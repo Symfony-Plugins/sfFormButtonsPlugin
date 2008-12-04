@@ -1,0 +1,55 @@
+# Note this #
+
+This plugin was tested in Symfony 1.2.0-DEV and 1.1.0. If anyone wants to test it in prior versions and contribute with any modification can email me freely.
+
+# sfFormButtonsPlugin #
+
+The `sfFormButtonsPlugin` plugin provides a helper that lets you use `button` tags instead `input` ones in common template design cases.
+
+## FormButtonsHelper ##
+
+    <?php use_helper('FormButtons') ?>
+
+### `submit_button_tag` ###
+
+Returns an XHTML compliant `<button>` tag with `type="submit"`.
+
+    echo submit_button_tag();
+    => <button type="submit" name="commit">Save changes</button>
+    
+    echo submit_button_tag('Save this now', array('class' => 'submit'));
+    => <button type="submit" name="commit" class="submit">Save this now</button>
+
+### `button_tag` ###
+
+Returns an XHTML compliant `<button>` tag with `type="button"`. By default, this helper creates a button tag with a name of `$value` replacing spaces with underscores, but you can avoid it specifying it in the `$options` parameter.
+
+    echo button_tag('My Button'); // name = my_button_btn
+    => <button type="button" name="my_button_btn">My Button</button>
+    
+    echo button_tag('Update Record', array('name' => 'my_update_button'));
+    => <button type="button" name="my_update_button">Update Record</button>
+
+### `button_to_js` ###
+
+Returns a button that'll trigger a javascript function using the onclick handler and return false after the fact.
+
+    echo button_to_js('Greeting', "alert('Hello world!')");
+    => <button name="greeting_btn" onclick="alert('Hello world!'); return false;" type="button">Greeting</button>
+
+### `button_to_url` ###
+
+Creates a `<button>` button tag of the given name pointing to a routed URL based on the `module/action` passed as argument and the routing configuration.
+
+    echo button_to_url('Delete this page', 'my_module/my_action');
+    => <button onclick="document.location.href='/my_module/my_action';" type="button" name="delete_this_page_btn">Delete this page</button>
+
+Options:
+
+ * `absolute` - if set to true, the helper outputs an absolute URL
+ * `query_string` - to append a query string (starting by ?) to the routed url
+ * `anchor` - to append an anchor (starting by #) to the routed url
+ * `confirm` - displays a javascript confirmation alert when the button is clicked
+ * `popup` - if set to true, the button opens a new browser window
+ * `post` - if set to true, the button submits a POST request instead of GET (caution: do not use inside a form)
+
