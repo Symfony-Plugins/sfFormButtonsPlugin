@@ -10,11 +10,17 @@
   <email>carlos@markhaus.com</email>
   <active>yes</active>
  </lead>
- <date>2008-11-13</date>
- <time>13:30:00</time>
+ <developer>
+  <name>Daniel Reiche</name>
+  <user>BigBadBassMan</user>
+  <email>d.reiche@gmx.ch</email>
+  <active>yes</active>
+ </developer>
+ <date>2009-09-11</date>
+ <time>11:00:00</time>
  <version>
-  <release>0.1.1</release>
-  <api>0.1.1</api>
+  <release>0.1.4</release>
+  <api>0.1.2</api>
  </version>
  <stability>
   <release>beta</release>
@@ -41,6 +47,7 @@
     <name>symfony</name>
     <channel>pear.symfony-project.com</channel>
     <min>1.1.0</min>
+    <max>1.2.0</max>
    </package>
   </required>
   <optional>
@@ -55,17 +62,17 @@
  <changelog>
    <release>
     <version>
-      <release>0.1.1</release>
-      <api>0.1.1</api>
+      <release>0.1.4</release>
+      <api>0.1.2</api>
     </version>
     <stability>
       <release>beta</release>
       <api>beta</api>
     </stability>
     <license uri="http://www.symfony-project.com/license">MIT license</license>
-    <date>2008-11-13</date>
+    <date>2009-09-11</date>
     <notes>
-      * me: Corrected error relative to the use of `image_tag()` and value for automatic `name` attribute generation.
+      * BBBM: added submit_button_to_remote() function to allow AJAX-Submit-Buttons similiar to submit_to_remote()
     </notes>
    </release>
  </changelog>

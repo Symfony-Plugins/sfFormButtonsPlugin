@@ -1,6 +1,6 @@
 # Note this #
 
-This plugin was tested in Symfony 1.2.0-DEV and 1.1.0. If anyone wants to test it in prior versions and contribute with any modification can email me freely.
+This plugin was tested in Symfony 1.2.8 and 1.1.0. If anyone wants to test it in prior versions and contribute with any modification can email me freely.
 
 # sfFormButtonsPlugin #
 
@@ -52,4 +52,14 @@ Options:
  * `confirm` - displays a javascript confirmation alert when the button is clicked
  * `popup` - if set to true, the button opens a new browser window
  * `post` - if set to true, the button submits a POST request instead of GET (caution: do not use inside a form)
+ 
+ ### 'submit_button_to_remote ###
+ 
+ Creates a `<button>` button tag with the given content and value and an AJAX XHttpRequest-Method to submit the form.
+ 
+   echo submit_button_to_remote('Save', 'save', array(
+     'url' => "module/action",
+     'update' => "SiteElem"
+   ));
+   => <button type="submit" value="save" onClick="new Ajax.Updater('SiteElem', '/path/to/module/action', {asynchronous:true, evalScripts:false, parameters:Form.serialize(this.form)}); return false;">Save</button>
 

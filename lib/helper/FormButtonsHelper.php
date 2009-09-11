@@ -176,24 +176,26 @@ function _button_tag_name($value)
  *
  *  @param  string  $content  content of the button, can be pure string, <img /> image tags or any allowed nested tags for <button></button>
  *  @param  string  $value    value of the button
- *  @param  array   options   above JavaScript-related configuration options as well as HTML-compliant additional attributes
+ *  @param  array   options   above JavaScript-related configuration options
+ *  @param  array   options_html HTML-compliant additional tag attributes
  *  @return string  XHTML-compliant <button>button tag</button> triggering an background AJAX-submit og the form
  */
-function submit_button_to_remote($content, $value = 'Save', $options = array())
+function submit_button_to_remote($content, $value = 'Save', $options, $options_html= array())
 {
   $options = _parse_attributes($options);
+  $options_html = _parse_attributes($options_html);
 
   if (!isset($options['with']))
   {
     $options['with'] = 'Form.serialize(this.form)';
   }
 
-  $options['type'] = 'submit';
-  $options['onclick'] = remote_function($options).' return false;';
-  $options['name'] = 'submit';
-  $options['value'] = $value;
+  $options_html['type'] = 'submit';
+  $options_html['onclick'] = remote_function($options).' return false;';
+  $options_html['name'] = 'submit';
+  $options_html['value'] = $value;
 
-  return content_tag('button', $content, _convert_options_to_javascript(_convert_options($options)));
+  return content_tag('button', $content, _convert_options_to_javascript(_convert_options($options_html)));
 }
 
 ?>
