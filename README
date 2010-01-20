@@ -44,6 +44,17 @@ Creates a `<button>` button tag of the given name pointing to a routed URL based
     echo button_to_url('Delete this page', 'my_module/my_action');
     => <button onclick="document.location.href='/my_module/my_action';" type="button" name="delete_this_page_btn">Delete this page</button>
 
+### 'submit_button_to_remote ###
+ 
+Creates a `<button>` button tag with the given content and value and an AJAX XHttpRequest-Method to submit the form.
+ 
+    echo submit_button_to_remote('Save', 'save', array(
+     'url' => "module/action",
+     'update' => "SiteElem"
+    ));
+    => <button type="submit" value="save" onClick="new Ajax.Updater('SiteElem', '/path/to/module/action', {asynchronous:true, evalScripts:false, parameters:Form.serialize(this.form)}); return false;">Save</button>
+
+
 Options:
 
  * `absolute` - if set to true, the helper outputs an absolute URL
@@ -52,14 +63,3 @@ Options:
  * `confirm` - displays a javascript confirmation alert when the button is clicked
  * `popup` - if set to true, the button opens a new browser window
  * `post` - if set to true, the button submits a POST request instead of GET (caution: do not use inside a form)
- 
- ### 'submit_button_to_remote ###
- 
- Creates a `<button>` button tag with the given content and value and an AJAX XHttpRequest-Method to submit the form.
- 
-   echo submit_button_to_remote('Save', 'save', array(
-     'url' => "module/action",
-     'update' => "SiteElem"
-   ));
-   => <button type="submit" value="save" onClick="new Ajax.Updater('SiteElem', '/path/to/module/action', {asynchronous:true, evalScripts:false, parameters:Form.serialize(this.form)}); return false;">Save</button>
-
