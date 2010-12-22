@@ -1,10 +1,10 @@
 # Note this #
 
-This plugin was tested in Symfony 1.2.8 and 1.1.0. If anyone wants to test it in prior versions and contribute with any modification can email me freely.
+This plugin was tested in Symfony 1.4.8. If anyone wants to test it in prior versions and contribute with any modification can email me freely.
 
 # sfFormButtonsPlugin #
 
-The `sfFormButtonsPlugin` plugin provides a helper that lets you use `button` tags instead `input` ones in common template design cases.
+The `sfFormButtonsPlugin` plugin provides a helper that lets you use `button` tags instead of `input` ones in common template design cases.
 
 ## FormButtonsHelper ##
 
@@ -44,7 +44,7 @@ Creates a `<button>` button tag of the given name pointing to a routed URL based
     echo button_to_url('Delete this page', 'my_module/my_action');
     => <button onclick="document.location.href='/my_module/my_action';" type="button" name="delete_this_page_btn">Delete this page</button>
 
-### 'submit_button_to_remote ###
+### `submit_button_to_remote` ###
  
 Creates a `<button>` button tag with the given content and value and an AJAX XHttpRequest-Method to submit the form.
  
@@ -63,3 +63,20 @@ Options:
  * `confirm` - displays a javascript confirmation alert when the button is clicked
  * `popup` - if set to true, the button opens a new browser window
  * `post` - if set to true, the button submits a POST request instead of GET (caution: do not use inside a form)
+
+
+### `button_to_remote_jq` ###
+Creates a `<button>` button tag with the given content and a jQuery call to a remote function.
+
+    echo button_to_remote_jq('Delete Item', array(
+      'url' => 'module/action?id='.$id,
+      'confirm' => 'Sure?',
+      'success' => '$('#someHtmlId').remove()',
+    ));
+
+
+Options:
+
+ * `success` - JavaScript function to call on successfull remote request. (jQuery.remove() for example.)
+ * `url` -  remote URL to call using jQuery and XmlHttpRequest
+ * `confirm` - if set, display a confirmation message prior to remove.
