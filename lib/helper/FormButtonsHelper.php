@@ -182,8 +182,13 @@ function button_to_url($value, $internal_uri, $options = array())
 		$html_options = _convert_options_to_javascript($html_options, $url);
 		unset($html_options['popup']);
 	} else {
-		$html_options['onclick'] = "document.location.href=".$url.";";
 		$html_options = _convert_options_to_javascript($html_options);
+		//prevent setting of onClick handler, if already present.
+		//this ensures compatibilty to UrlHelper::link_to() and allows the creation
+		//of JavaScript Delete buttons similiar to link_to()
+		if (!in_array('onclick', $html_options)) {
+			$html_options['onclick'] = "document.location.href=".$url.";";
+		}
 	}
 
 	return content_tag('button', $value, $html_options);
@@ -223,7 +228,7 @@ function _button_tag_name($value)
  *  @uses JavascriptHelper.php
  *  @see  submit_to_remote, submit_image_to_remote
  *
- *  @return string  XHTML-compliant <button>button tag</button> triggering an background AJAX-submit og the form
+ *  @return string  XHTML-compliant <button>button tag</button> triggering an background AJAX-submit of the form
  */
 function submit_button_to_remote($content, $value = 'Save', $options, $options_html= array())
 {
